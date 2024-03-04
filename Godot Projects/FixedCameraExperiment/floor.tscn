@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bywdrt2vx82xe"]
+
+[ext_resource type="Script" path="res://floor.gd" id="1_ynkqb"]
+[ext_resource type="Material" uid="uid://bkv2m260q22ky" path="res://floor.tres" id="2_48jim"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ou8xp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1q20q"]
+material = ExtResource("2_48jim")
+
+[node name="Floor" type="RigidBody3D"]
+disable_mode = 1
+script = ExtResource("1_ynkqb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ou8xp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_1q20q")
