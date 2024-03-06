@@ -15,7 +15,7 @@ func _process(delta):
 	
 	var facing = global_transform.basis.z
 	if Input.is_action_pressed("ui_up"):
-		velocity = (facing * 500 )* delta
+		velocity = (facing * 50 )* delta
 	else:
 		velocity.x = move_toward(velocity.x, 0, 10 * delta)
 		velocity.z = move_toward(velocity.z, 0, 10 * delta)
