@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1s5mtdyk8bbv"]
+[gd_scene load_steps=5 format=3 uid="uid://c1s5mtdyk8bbv"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_ni3oc"]
+[ext_resource type="PackedScene" uid="uid://cs05wjknf0dm4" path="res://3D models/humanoid_model.tscn" id="2_3vp3g"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_onpj4"]
 
@@ -10,11 +11,17 @@
 script = ExtResource("1_ni3oc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("BoxMesh_onpj4")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.216125, 0, 0, 0, 0.218158, 0, 0, 0, 1, 0, 0.238991, 0.286332)
+visible = false
 mesh = SubResource("BoxMesh_onpj4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+visible = false
 shape = SubResource("BoxShape3D_w506r")
+
+[node name="humanoid" parent="." instance=ExtResource("2_3vp3g")]
+transform = Transform3D(-0.3, 0, -4.52987e-08, 0, 0.3, 0, 4.52987e-08, 0, -0.3, 0, 0, 0)
