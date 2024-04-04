@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyrlng7elgvi5"]
+
+[ext_resource type="Script" path="res://PhysicsIntern.gd" id="1_wbh4j"]
+[ext_resource type="PackedScene" uid="uid://cvd4x4be2lusl" path="res://mesh.tscn" id="2_drrwi"]
+[ext_resource type="PackedScene" uid="uid://b4ncwvcsfogpu" path="res://spring_arm_3d.tscn" id="3_u4050"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xh4qb"]
+height = 1.15035
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_1xrse"]
+
+[node name="PhysicsIntern" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.848085, 0)
+script = ExtResource("1_wbh4j")
+
+[node name="Mesh" parent="." instance=ExtResource("2_drrwi")]
+
+[node name="SpringArm3D" parent="." instance=ExtResource("3_u4050")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.301477, 0)
+shape = SubResource("CapsuleShape3D_xh4qb")
+
+[node name="DirectionNode" type="Node3D" parent="."]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("SeparationRayShape3D_1xrse")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -8,15 +8,20 @@ const DECELERATION = .2
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var spring_force = 0.01
+var ground_position
 
 @onready var _model: Node3D = $Mesh
 @onready var _spring_arm: SpringArm3D = $SpringArm3D
 @onready var sep_ray_shape = $SpringForce/SeparationRayShape
+@onready var direction_node = $DirectionNode
 
 func _physics_process(delta):
+	direction_node.rotation = Vector3(0,_spring_arm.rotation.y,0) 
 	# Add the gravity.
 	if not is_on_floor():
-		velocity.y -= gravity * delta
+		if ground_position == null:
+			velocity.y -= gravity * delta
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
@@ -25,7 +30,7 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("Left", "Right", "Forward", "Backward")
-	var direction = (_spring_arm.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var direction = (direction_node.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
 
 	if direction:
@@ -41,9 +46,15 @@ func _physics_process(delta):
 		var look_direction = Vector2(velocity.z, velocity.x)
 		_model.rotation.y = look_direction.angle()
 		
+	#if ground_position != null:
+		#velocity = (Vector3.UP * spring_force * gravity * ground_position)
+		#is_on_floor()
+		
+		print(velocity)
 
 func _process(delta):
 	_spring_arm.position = position
+	
 	
 	if Input.is_action_just_pressed("ui_end"):
 		get_tree().quit()
@@ -80,5 +91,14 @@ func _process(delta):
 
 func _on_spring_force_body_entered(body):
 	print_debug("IS ON FLOOR")
+	ground_position = body.position.y
+	
+	#apply_central_force(Vector3.UP, spring_force * gravity* ground_position)
 	
 	
+	
+	
+
+
+func _on_spring_force_body_exited(body):
+	ground_position = null

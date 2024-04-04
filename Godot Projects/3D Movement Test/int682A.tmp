@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://dao3esawehh40"]
+
+[ext_resource type="Script" path="res://intern.gd" id="1_o6f7d"]
+[ext_resource type="Script" path="res://SpringArm3D.gd" id="2_2u8ov"]
+[ext_resource type="Script" path="res://SpringForce.gd" id="3_amg0q"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2be5s"]
+height = 1.03185
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_u1thf"]
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_op0f1"]
+margin = 2.19
+length = 0.565319
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qcwyj"]
+transparency = 1
+albedo_color = Color(0.419608, 0.254902, 1, 0.368627)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_387nt"]
+material = SubResource("StandardMaterial3D_qcwyj")
+
+[node name="Intern" type="CharacterBody3D"]
+safe_margin = 0.1
+script = ExtResource("1_o6f7d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.335147, 0)
+shape = SubResource("CapsuleShape3D_2be5s")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+spring_length = 7.0
+margin = 0.2
+script = ExtResource("2_2u8ov")
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, 0.513464, 0, 0, 0, 1, 0, 0.335147, 0)
+mesh = SubResource("CapsuleMesh_u1thf")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(0.3, 0, 0, 0, 0.0058901, 0.299942, 0, -0.299942, 0.0058901, -0.00626755, 0.487999, 0.611925)
+mesh = SubResource("CapsuleMesh_u1thf")
+skeleton = NodePath("../..")
+
+[node name="SpringForce" type="Area3D" parent="."]
+script = ExtResource("3_amg0q")
+
+[node name="RayCast3D" type="RayCast3D" parent="SpringForce"]
+
+[node name="SeparationRayShape" type="CollisionShape3D" parent="SpringForce"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.094919, 0)
+shape = SubResource("SeparationRayShape3D_op0f1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SpringForce/SeparationRayShape"]
+transform = Transform3D(0.771814, 0, 0, 0, 0.448841, 0, 0, 0, 0.784442, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_387nt")
+
+[node name="DirectionNode" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.49877, 0)
+
+[connection signal="body_entered" from="SpringForce" to="." method="_on_spring_force_body_entered"]
+[connection signal="body_exited" from="SpringForce" to="." method="_on_spring_force_body_exited"]
