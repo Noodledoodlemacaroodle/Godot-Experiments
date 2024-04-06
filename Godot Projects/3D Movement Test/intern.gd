@@ -11,7 +11,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var spring_force = 0.01
 var ground_position
 
-@onready var _model: Node3D = $Mesh
+@onready var _model = $Intern
+@onready var modelAnim = _model.get_child(1)
 @onready var _spring_arm: SpringArm3D = $SpringArm3D
 @onready var sep_ray_shape = $SpringForce/SeparationRayShape
 @onready var direction_node = $DirectionNode
@@ -36,6 +37,7 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = move_toward(velocity.x, direction.x * SPEED, ACCELERATION)
 		velocity.z = move_toward(velocity.z, direction.z * SPEED, ACCELERATION)
+		modelAnim.play("RunAnim")
 	else:
 		velocity.x = move_toward(velocity.x, 0, DECELERATION)
 		velocity.z = move_toward(velocity.z, 0, DECELERATION)

@@ -1,39 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvd4x4be2lusl"]
+[gd_scene load_steps=2 format=3 uid="uid://cvd4x4be2lusl"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_u1thf"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_x8x3f"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_fh0s4"]
-height = 0.470885
-radius = 0.0805845
 
 [node name="Mesh" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.513464, 0, 0, 0, 1, 0, 0.335147, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_u1thf")
 skeleton = NodePath("../..")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.3, 0, 0, 0, 0.0058901, 0.299942, 0, -0.299942, 0.0058901, -0.00626755, 0.487999, 0.611925)
+visible = false
 mesh = SubResource("CapsuleMesh_u1thf")
 skeleton = NodePath("../..")
 
 [node name="l_leg_root" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.217579, -0.16013, 0)
-
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.217579, -0.274776, -0.0441578)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
-transform = Transform3D(0.157664, 0, 0, 0, 0.244363, 0, 0, 0, 0.157664, 0.0304698, -0.173504, 0)
-mesh = SubResource("CylinderMesh_x8x3f")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0304698, -0.173504, 0)
-shape = SubResource("CylinderShape3D_fh0s4")
-
-[node name="HingeJoint3D" type="HingeJoint3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.217579, -0.274776, -0.0441578)
-node_a = NodePath("../RigidBody3D")
+visible = false
