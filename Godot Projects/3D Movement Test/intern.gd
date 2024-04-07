@@ -22,11 +22,13 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		if ground_position == null:
+			
 			velocity.y -= gravity * delta
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -37,10 +39,16 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = move_toward(velocity.x, direction.x * SPEED, ACCELERATION)
 		velocity.z = move_toward(velocity.z, direction.z * SPEED, ACCELERATION)
-		modelAnim.play("RunAnim")
+		if is_on_floor(): 
+			modelAnim.play("RunAnim")
+		else:
+			modelAnim.play("JumpAnim")
+		
+			
 	else:
 		velocity.x = move_toward(velocity.x, 0, DECELERATION)
 		velocity.z = move_toward(velocity.z, 0, DECELERATION)
+		modelAnim.play("IdleAnim")
 
 	move_and_slide()
 	
@@ -60,6 +68,9 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("ui_end"):
 		get_tree().quit()
+		
+	#if Input.is_action_just_pressed("ui_return")
+		#fullscreen
 		
 	
 

@@ -8,3 +8,4 @@ margin = 0.2
 script = ExtResource("1_2od8b")
 
 [node name="Camera3D" type="Camera3D" parent="."]
+current = true
