@@ -18,12 +18,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.683553, 0)
 shape = SubResource("CapsuleShape3D_2be5s")
 
 [node name="SpringArm3D" parent="." instance=ExtResource("2_u3tjj")]
+spring_length = 4.0
 
 [node name="Mesh" parent="." instance=ExtResource("3_sro7x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.00785, 0)
 
 [node name="DirectionNode" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.49877, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.21894, 0)
 
 [node name="Intern" parent="." instance=ExtResource("4_nulq0")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -1.01112, 0)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -1.2481, 0)
