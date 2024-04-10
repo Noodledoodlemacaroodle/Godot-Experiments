@@ -1,17 +1,13 @@
 [gd_scene load_steps=6 format=3 uid="uid://dao3esawehh40"]
-[gd_scene load_steps=8 format=3 uid="uid://dao3esawehh40"]
 
 [ext_resource type="Script" path="res://intern.gd" id="1_o6f7d"]
 [ext_resource type="PackedScene" uid="uid://b4ncwvcsfogpu" path="res://spring_arm_3d.tscn" id="2_u3tjj"]
 [ext_resource type="PackedScene" uid="uid://cvd4x4be2lusl" path="res://mesh.tscn" id="3_sro7x"]
 [ext_resource type="PackedScene" uid="uid://ddxfet723v5kf" path="res://internMesh.tscn" id="4_nulq0"]
-[ext_resource type="Script" path="res://PickupNode.gd" id="5_a4bvd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2be5s"]
 radius = 0.139847
 height = 1.12663
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_kd0dd"]
 
 [node name="Intern" type="CharacterBody3D"]
 safe_margin = 0.1
@@ -31,20 +27,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.00785, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.21894, 0)
 
 [node name="Intern" parent="." instance=ExtResource("4_nulq0")]
-<<<<<<< Updated upstream
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -1.2481, 0)
-=======
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -1.01112, 0)
-
-[node name="PickupNode" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.439058, 0.306693)
-script = ExtResource("5_a4bvd")
-
-[node name="Area3D" type="Area3D" parent="PickupNode"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupNode/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.305585, 0.329459)
-shape = SubResource("BoxShape3D_kd0dd")
-
-[connection signal="body_entered" from="PickupNode/Area3D" to="PickupNode" method="_on_area_3d_body_entered"]
->>>>>>> Stashed changes
