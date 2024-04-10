@@ -347,5 +347,18 @@ mesh = SubResource("BoxMesh_gufk7")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D6"]
 shape = SubResource("BoxShape3D_bjiyg")
 
+[node name="RigidBody3D7" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.670186, 0.978683, 9.54524)
+collision_layer = 3
+collision_mask = 3
+can_sleep = false
+freeze = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D7"]
+mesh = SubResource("BoxMesh_gufk7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D7"]
+shape = SubResource("BoxShape3D_bjiyg")
+
 [node name="Intern" parent="." instance=ExtResource("1_cqu4q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.89429, 2.79368, 3.24672)
