@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0owygok6mm8h"]
+[gd_scene load_steps=7 format=3 uid="uid://c0owygok6mm8h"]
 
+[ext_resource type="PackedScene" uid="uid://ysjqhpj648t8" path="res://PickupParent.tscn" id="1_3xq5a"]
 [ext_resource type="PackedScene" uid="uid://dao3esawehh40" path="res://intern.tscn" id="1_cqu4q"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_utrwi"]
@@ -346,6 +347,9 @@ mesh = SubResource("BoxMesh_gufk7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D6"]
 shape = SubResource("BoxShape3D_bjiyg")
+
+[node name="RigidBody3D7" parent="." instance=ExtResource("1_3xq5a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0973, 0)
 
 [node name="Intern" parent="." instance=ExtResource("1_cqu4q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.89429, 2.79368, 3.24672)
