@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjcywe2u77s8k"]
+
+[ext_resource type="PackedScene" uid="uid://dy85gvq7oprpy" path="res://player.tscn" id="1_inasi"]
+
+[node name="World" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54756, -0.218811, -5.01836)
+use_collision = true
+size = Vector3(17.4424, 0.562378, 23.4975)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGBox3D"]
+transform = Transform3D(7.52699, 0, 0, 0, 1, 0, 0, 0, 9.84053, 2.8253, 0.314856, 5.25618)
+operation = 2
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="CSGBox3D"]
+transform = Transform3D(13.8568, 0, 0, 0, 1, 0, 0, 0, 7.9084, -2.46968, 0.314856, 7.31161)
+operation = 2
+
+[node name="CSGSphere3D3" type="CSGSphere3D" parent="CSGBox3D"]
+transform = Transform3D(6.70291, 0, 0, 0, 0.999664, 0, 0, 0, 10.1926, -5.76319, 0.314856, 3.35603)
+operation = 2
+
+[node name="Player" parent="." instance=ExtResource("1_inasi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.561381, 1.10802, -2.13523)
