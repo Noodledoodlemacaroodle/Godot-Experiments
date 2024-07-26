@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=3 uid="uid://c11e4hip6o77o"]
+
+[ext_resource type="PackedScene" uid="uid://b66cmbpjxsyrd" path="res://text_mesh.tscn" id="1_p2sgm"]
+[ext_resource type="Texture2D" uid="uid://buepp4fc5aovu" path="res://Textures/PLay Button.png" id="2_sp5px"]
+[ext_resource type="Script" path="res://Level/Play.gd" id="3_3uevi"]
+[ext_resource type="Texture2D" uid="uid://c4064ke5035u8" path="res://Textures/How to play Button.png" id="3_cdoco"]
+[ext_resource type="Script" path="res://Level/How to play.gd" id="4_43p4p"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fnsv0"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_b04ju"]
+sky_material = SubResource("ProceduralSkyMaterial_fnsv0")
+
+[sub_resource type="Environment" id="Environment_cm1vh"]
+background_mode = 1
+background_color = Color(0.850522, 0.274236, 0.918228, 1)
+background_energy_multiplier = 0.16
+sky = SubResource("Sky_b04ju")
+ambient_light_color = Color(0.791357, 0.735452, 0.682805, 1)
+tonemap_mode = 2
+tonemap_exposure = 16.0
+glow_enabled = true
+glow_intensity = 8.0
+glow_strength = 2.0
+
+[node name="Main menu" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_cm1vh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.115, 0.23, 2.834)
+projection = 1
+size = 3.93
+
+[node name="text_mesh" parent="." instance=ExtResource("1_p2sgm")]
+transform = Transform3D(0.996195, 0.00926152, -0.0866623, 3.46812e-16, 0.994338, 0.106264, 0.0871557, -0.10586, 0.990554, 2.08165e-12, 1.17, 2.08165e-12)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 645.0
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Play" type="Button" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("2_sp5px")
+script = ExtResource("3_3uevi")
+file_path = "res://Level/level.tscn"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="How to play" type="Button" parent="Control/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "
+"
+icon = ExtResource("3_cdoco")
+script = ExtResource("4_43p4p")
+file_path = "res://Level/level_tutorial.tscn"
+
+[connection signal="button_up" from="Control/VBoxContainer/HBoxContainer/Play" to="Control/VBoxContainer/HBoxContainer/Play" method="_on_button_up"]
+[connection signal="button_up" from="Control/VBoxContainer/HBoxContainer2/How to play" to="Control/VBoxContainer/HBoxContainer2/How to play" method="_on_button_up"]

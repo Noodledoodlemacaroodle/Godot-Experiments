@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqdutcd04vt2l"]
+
+[ext_resource type="PackedScene" uid="uid://bkrfy0yc6uqg6" path="res://player.tscn" id="1_iae77"]
+[ext_resource type="PackedScene" uid="uid://v0ark1avw3jb" path="res://Background.tscn" id="2_e57ea"]
+[ext_resource type="Material" uid="uid://c3u0h6pnoyfkm" path="res://LaunchPad.tres" id="3_7ixqe"]
+[ext_resource type="Material" uid="uid://6l6ueo1vge21" path="res://LandingPad.tres" id="4_8l6ff"]
+[ext_resource type="Script" path="res://Level/LandingPad.gd" id="5_rtido"]
+
+[node name="Level" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_iae77")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 1.55238, 2.08165e-12)
+
+[node name="Floor" parent="." instance=ExtResource("2_e57ea")]
+
+[node name="LaunchPad" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.255, 2.08165e-12)
+use_collision = true
+size = Vector3(2.5, 0.5, 2.5)
+material = ExtResource("3_7ixqe")
+
+[node name="LandingPad" type="CSGBox3D" parent="." groups=["Goal"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0.255, 2.08165e-12)
+use_collision = true
+size = Vector3(2.5, 0.5, 2.5)
+material = ExtResource("4_8l6ff")
+script = ExtResource("5_rtido")
+file_path = "res://Level/main_menu.tscn"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 6, 13.505)
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.28, 2.395, -2.13)
+shaded = true
+text = "Fly with Space or W"
+font_size = 277
+
+[node name="Label3D2" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.105, 0.91, 2.35)
+shaded = true
+text = "Turn with A & D or Left & Right arrowkeys"
+font_size = 277
+
+[node name="Label3D3" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.11, 3.115, -1.592)
+modulate = Color(0.0313726, 1, 0, 1)
+outline_modulate = Color(1, 1, 1, 1)
+text = "Land Here!
+         I
+        V"
+font_size = 262

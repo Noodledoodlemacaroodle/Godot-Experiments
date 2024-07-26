@@ -1,25 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cr6xtcbifdyyi"]
+[gd_scene load_steps=7 format=3 uid="uid://cr6xtcbifdyyi"]
 
 [ext_resource type="PackedScene" uid="uid://bkrfy0yc6uqg6" path="res://player.tscn" id="1_xuq83"]
 [ext_resource type="Material" uid="uid://c3u0h6pnoyfkm" path="res://LaunchPad.tres" id="2_2okal"]
 [ext_resource type="Material" uid="uid://6l6ueo1vge21" path="res://LandingPad.tres" id="3_o5fbi"]
 [ext_resource type="Script" path="res://Level/LandingPad.gd" id="4_4kds4"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1xadj"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_3x837"]
-sky_material = SubResource("ProceduralSkyMaterial_1xadj")
-
-[sub_resource type="Environment" id="Environment_tnen8"]
-background_mode = 2
-sky = SubResource("Sky_3x837")
-tonemap_mode = 2
-glow_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5bhub"]
-albedo_color = Color(0.619843, 0.479813, 0.327689, 1)
+[ext_resource type="PackedScene" uid="uid://v0ark1avw3jb" path="res://Background.tscn" id="5_y1ygr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e4eg5"]
 albedo_color = Color(1, 0.156863, 1, 1)
@@ -28,19 +13,6 @@ albedo_color = Color(1, 0.156863, 1, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_xuq83")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 1.55238, 2.08165e-12)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_tnen8")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-shadow_enabled = true
-
-[node name="Floor" type="CSGBox3D" parent="." groups=["Hazard"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -4, 2.08165e-12)
-use_collision = true
-size = Vector3(30, 8, 5)
-material = SubResource("StandardMaterial3D_5bhub")
 
 [node name="Obstacle" type="CSGBox3D" parent="." groups=["Hazard"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 4.27533, 2.08165e-12)
@@ -64,3 +36,5 @@ file_path = "res://Level/level_3.tscn"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 6, 13.505)
+
+[node name="Floor" parent="." instance=ExtResource("5_y1ygr")]
