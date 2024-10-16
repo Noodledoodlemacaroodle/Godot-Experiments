@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://dh6mw6g105x7y"]
+
+[ext_resource type="PackedScene" uid="uid://8otdvgxl4hqa" path="res://Character.glb" id="1_a6fao"]
+[ext_resource type="Texture2D" uid="uid://co6eav1kk2mdv" path="res://Skins/humanMaleA.png" id="2_7hs28"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ncosa"]
+albedo_texture = ExtResource("2_7hs28")
+
+[node name="Character" instance=ExtResource("1_a6fao")]
+
+[node name="Skeleton3D" parent="Root" index="0"]
+bones/0/position = Vector3(0.204209, 0.193205, -0.14881)
+bones/0/rotation = Quaternion(-0.707107, 1.07164e-07, 0.707107, -1.5225e-08)
+bones/1/rotation = Quaternion(-0.507508, 0.508224, -0.491911, -0.492106)
+bones/2/rotation = Quaternion(0.0157269, -0.00207784, 0.994625, -0.102321)
+bones/3/rotation = Quaternion(0.946129, -0.0218709, 0.0755026, -0.314104)
+bones/7/rotation = Quaternion(-0.707107, 5.33849e-08, 0.707107, -7.17481e-08)
+bones/9/position = Vector3(-0.207521, 0.193205, -0.14881)
+bones/9/rotation = Quaternion(-0.707107, 1.07155e-07, 0.707107, -1.52204e-08)
+bones/10/rotation = Quaternion(-0.507689, 0.507906, -0.491724, -0.492433)
+bones/12/rotation = Quaternion(0.948112, 0.0114449, -0.044093, -0.314656)
+bones/14/rotation = Quaternion(-0.5, -0.5, 0.5, -0.5)
+bones/16/rotation = Quaternion(-0.707107, 5.33849e-08, 0.707107, -7.17481e-08)
+bones/18/rotation = Quaternion(9.30155e-05, -8.25716e-08, 0.999999, -0.0014431)
+bones/26/position = Vector3(0.08828, 0.281082, 0.0649611)
+bones/26/rotation = Quaternion(0.586882, 0.410654, 0.548294, -0.431632)
+bones/27/rotation = Quaternion(0.0838899, 0.710813, 0.0613104, 0.695664)
+bones/28/rotation = Quaternion(0.0467615, 0.0125739, 0.00544682, 0.998812)
+bones/37/position = Vector3(-0.0882801, 0.281082, 0.0649612)
+bones/38/rotation = Quaternion(-0.000936297, 0.964876, -0.103903, -0.241282)
+bones/45/rotation = Quaternion(-0.358374, 0.729597, -0.429253, -0.393699)
+bones/48/rotation = Quaternion(0.986703, 0.00106043, 0.162529, 0.000670046)
+bones/48/scale = Vector3(1.00004, 1, 1)
+bones/49/rotation = Quaternion(0.141574, 0.0324442, 0.0528546, 0.987983)
+bones/50/rotation = Quaternion(-0.543807, -0.194182, -0.187546, 0.794603)
+bones/50/scale = Vector3(1.00002, 0.999984, 0.999996)
+bones/53/rotation = Quaternion(0.976587, -0.00135947, -0.215117, 0.0004836)
+bones/54/rotation = Quaternion(0.138947, 0.0115102, -0.0591724, 0.988463)
+bones/55/rotation = Quaternion(-0.548494, 0.228828, 0.17182, 0.785665)
+bones/56/rotation = Quaternion(0.0282606, 0.953941, -0.297574, -0.0254441)
+
+[node name="characterMedium" parent="Root/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ncosa")
