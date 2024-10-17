@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://player.gd" id="1_xo64o"]
 [ext_resource type="Texture2D" uid="uid://co6eav1kk2mdv" path="res://Skins/humanMaleA.png" id="2_ii2ws"]
-[ext_resource type="Script" path="res://state_machine.gd" id="3_enr2e"]
+[ext_resource type="PackedScene" uid="uid://c18t7w5rqlki8" path="res://state_machine.tscn" id="3_6labi"]
 [ext_resource type="Script" path="res://idle.gd" id="4_6kpyn"]
 [ext_resource type="Script" path="res://fall.gd" id="5_taljf"]
 [ext_resource type="Script" path="res://jump.gd" id="6_wt7d1"]
@@ -1489,9 +1489,13 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.93524, 0)
 shape = SubResource("CapsuleShape3D_fd60d")
 
-[node name="State machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
-script = ExtResource("3_enr2e")
-starting_state = NodePath("idle")
+[node name="State machine" parent="." instance=ExtResource("3_6labi")]
+
+[node name="fall" type="Node" parent="State machine" node_paths=PackedStringArray("idle_state", "move_state")]
+script = ExtResource("5_taljf")
+idle_state = NodePath("../idle")
+move_state = NodePath("../move")
+animation_name = "Jump"
 
 [node name="idle" type="Node" parent="State machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state")]
 script = ExtResource("4_6kpyn")
@@ -1499,12 +1503,6 @@ fall_state = NodePath("../fall")
 jump_state = NodePath("../jump")
 move_state = NodePath("../move")
 animation_name = "Idle"
-
-[node name="fall" type="Node" parent="State machine" node_paths=PackedStringArray("idle_state", "move_state")]
-script = ExtResource("5_taljf")
-idle_state = NodePath("../idle")
-move_state = NodePath("../move")
-animation_name = "Jump"
 
 [node name="jump" type="Node" parent="State machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state")]
 script = ExtResource("6_wt7d1")
