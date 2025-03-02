@@ -1,0 +1,194 @@
+[gd_scene load_steps=26 format=3 uid="uid://cawdyoj5h8uh6"]
+
+[ext_resource type="Material" uid="uid://0l5kfkrpp1q7" path="res://prototypeMats/pan.tres" id="1_eo84s"]
+[ext_resource type="Script" path="res://Level/frying_pan.gd" id="1_jsowj"]
+[ext_resource type="Script" path="res://Level/static_body_3d.gd" id="3_hdtvq"]
+[ext_resource type="Script" path="res://Level/sausage.gd" id="3_vmp8b"]
+[ext_resource type="Script" path="res://Level/bonfire.gd" id="4_jsewh"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xkfyu"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_lrvtf"]
+sky_material = SubResource("ProceduralSkyMaterial_xkfyu")
+
+[sub_resource type="Environment" id="Environment_lkh36"]
+background_mode = 2
+sky = SubResource("Sky_lrvtf")
+tonemap_mode = 2
+
+[sub_resource type="Curve" id="Curve_td6gd"]
+_data = [Vector2(0.0217391, -1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vns0o"]
+curve = SubResource("Curve_td6gd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dt0qo"]
+emission_shape = 3
+emission_box_extents = Vector3(0.5, 0.5, 0.5)
+gravity = Vector3(0, 5, 0)
+hue_variation_min = -0.79
+hue_variation_max = 0.57
+hue_variation_curve = SubResource("CurveTexture_vns0o")
+turbulence_enabled = true
+turbulence_noise_strength = 5.27
+turbulence_noise_scale = 0.573
+turbulence_noise_speed_random = 1.37
+collision_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qw3ej"]
+albedo_color = Color(1, 0.552941, 0, 1)
+emission_enabled = true
+emission = Color(0.582809, 0.170434, 0, 1)
+emission_energy_multiplier = 1.56
+
+[sub_resource type="QuadMesh" id="QuadMesh_8278k"]
+material = SubResource("StandardMaterial3D_qw3ej")
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qky5k"]
+material = ExtResource("1_eo84s")
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.7
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wjn05"]
+material = ExtResource("1_eo84s")
+height = 0.01
+
+[sub_resource type="TorusMesh" id="TorusMesh_l21p7"]
+material = ExtResource("1_eo84s")
+inner_radius = 0.45
+outer_radius = 0.532
+ring_segments = 3
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_sd4pb"]
+custom_solver_bias = 1.0
+height = 0.752522
+radius = 0.451914
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qe65y"]
+friction = 50.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_otwvn"]
+friction = 0.3
+bounce = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a7x2n"]
+albedo_color = Color(0.513726, 0.239216, 0.219608, 1)
+roughness = 0.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tdbi7"]
+material = SubResource("StandardMaterial3D_a7x2n")
+radius = 0.05
+height = 0.3
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c550a"]
+radius = 0.0519564
+height = 0.320673
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_rlqme"]
+height = 1.55467
+radius = 0.700967
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_re61b"]
+albedo_color = Color(0.0295066, 0.0295066, 0.0295066, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0lys8"]
+material = SubResource("StandardMaterial3D_re61b")
+top_radius = 0.01
+bottom_radius = 0.7
+height = 0.5
+
+[node name="cooking scene" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_lkh36")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.385082, 0)
+amount = 64
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_dt0qo")
+draw_pass_1 = SubResource("QuadMesh_8278k")
+
+[node name="Frying Pan" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.604897, 2.156)
+script = ExtResource("1_jsowj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Frying Pan"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_qky5k")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Frying Pan"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0515241, -0.842453)
+mesh = SubResource("CylinderMesh_wjn05")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Frying Pan/MeshInstance3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00193262, 0.0216044, 7.60555e-05)
+mesh = SubResource("TorusMesh_l21p7")
+
+[node name="Area3D" type="Area3D" parent="Frying Pan/MeshInstance3D2/MeshInstance3D" groups=["Frying Pan"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Frying Pan/MeshInstance3D2/MeshInstance3D/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.356572, 0)
+shape = SubResource("CylinderShape3D_sd4pb")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Frying Pan/MeshInstance3D2" groups=["Frying Pan"]]
+disable_mode = 2
+physics_material_override = SubResource("PhysicsMaterial_qe65y")
+script = ExtResource("3_hdtvq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Frying Pan/MeshInstance3D2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.356572, 0)
+shape = SubResource("CylinderShape3D_sd4pb")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.883439, 0.468547, 0, -0.468547, 0.883439, 0, 1.67012, 2.47667)
+
+[node name="Sausage" type="RigidBody3D" parent="." groups=["Food"]]
+transform = Transform3D(0.0373588, -0.991598, 0.123844, 0, -0.123931, -0.992291, 0.999302, 0.0370708, -0.0046299, 0, 0.6824, 1.18618)
+disable_mode = 2
+mass = 0.3
+physics_material_override = SubResource("PhysicsMaterial_otwvn")
+can_sleep = false
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 10
+linear_damp = 3.0
+angular_damp = 3.0
+script = ExtResource("3_vmp8b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Sausage"]
+mesh = SubResource("CapsuleMesh_tdbi7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sausage"]
+shape = SubResource("CapsuleShape3D_c550a")
+
+[node name="Bonfire" type="Area3D" parent="." groups=["Fire"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.244562, 0)
+script = ExtResource("4_jsewh")
+heat_value = null
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bonfire"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562539, 0)
+shape = SubResource("CylinderShape3D_rlqme")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bonfire"]
+mesh = SubResource("CylinderMesh_0lys8")
+skeleton = NodePath("../..")
+
+[connection signal="area_entered" from="Frying Pan/MeshInstance3D2/MeshInstance3D/Area3D" to="Frying Pan" method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="Frying Pan/MeshInstance3D2/MeshInstance3D/Area3D" to="Frying Pan" method="_on_area_3d_area_exited"]
+[connection signal="body_entered" from="Sausage" to="Sausage" method="_on_body_entered"]
+[connection signal="body_shape_entered" from="Sausage" to="Sausage" method="_on_body_shape_entered"]
+[connection signal="area_entered" from="Bonfire" to="Bonfire" method="_on_area_entered"]
+[connection signal="area_exited" from="Bonfire" to="Bonfire" method="_on_area_exited"]
+[connection signal="body_entered" from="Bonfire" to="Bonfire" method="_on_body_entered"]
+[connection signal="body_exited" from="Bonfire" to="Bonfire" method="_on_body_exited"]
