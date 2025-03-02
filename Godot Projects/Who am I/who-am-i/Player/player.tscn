@@ -1,15 +1,107 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjiomguvdmmq3"]
+[gd_scene load_steps=10 format=3 uid="uid://bjiomguvdmmq3"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_3xxuy"]
+[ext_resource type="Script" path="res://Player/ray_cast_3d.gd" id="2_krkog"]
+[ext_resource type="Texture2D" uid="uid://cbhvc8q3u0cdq" path="res://UI/Crosshair (1).png" id="3_ojwut"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r2ur8"]
 
-[node name="Player" type="CharacterBody3D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8mu1"]
+atlas = ExtResource("3_ojwut")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvtg3"]
+atlas = ExtResource("3_ojwut")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n4k7o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8mu1")
+}],
+"loop": true,
+"name": &"Interact",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvtg3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SystemFont" id="SystemFont_w5v0x"]
+font_names = PackedStringArray("Rockwell")
+subpixel_positioning = 0
+
+[sub_resource type="Theme" id="Theme_lvsad"]
+default_font = SubResource("SystemFont_w5v0x")
+default_font_size = 60
+
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_3xxuy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05644, 0)
 shape = SubResource("CapsuleShape3D_r2ur8")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Neck" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Neck"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62733, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="Neck/Camera3D"]
+target_position = Vector3(0, 0, -2)
+collision_mask = 2
+script = ExtResource("2_krkog")
+
+[node name="Control" type="Control" parent="Neck/Camera3D"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Neck/Camera3D/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Neck/Camera3D/Control/CenterContainer"]
+sprite_frames = SubResource("SpriteFrames_n4k7o")
+animation = &"Interact"
+
+[node name="Label" type="RichTextLabel" parent="Neck/Camera3D/Control"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -542.0
+offset_top = -158.0
+offset_right = 543.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_lvsad")
+bbcode_enabled = true
+text = "[center]Text[/center]"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="text_timer" type="Timer" parent="Neck/Camera3D/Control/Label"]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="Neck/Camera3D/Control/Label/text_timer" to="Neck/Camera3D/RayCast3D" method="_on_text_timer_timeout"]

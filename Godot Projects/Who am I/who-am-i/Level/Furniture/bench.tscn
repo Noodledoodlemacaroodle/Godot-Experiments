@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://diejbthi65woi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8kq5p"]
+albedo_color = Color(0.502451, 0.195486, 1.44392e-07, 1)
+
+[node name="Bench" type="CSGPolygon3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.348719, 0)
+use_collision = true
+polygon = PackedVector2Array(-0.16169, 1.2876, 0.0134267, 1.28509, 0.0209317, 0.434527, 0.39368, 0.427022, 0.39368, 0.00924438, -0.210281, 0.00900435)
+depth = 3.0
+material = SubResource("StandardMaterial3D_8kq5p")

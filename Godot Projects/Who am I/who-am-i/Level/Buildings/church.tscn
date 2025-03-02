@@ -1,0 +1,192 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhptx8gwh7rdp"]
+
+[ext_resource type="PackedScene" uid="uid://diejbthi65woi" path="res://Level/Furniture/bench.tscn" id="1_csog3"]
+[ext_resource type="Material" uid="uid://dmapk3qifc4hl" path="res://prototypeMats/Black.tres" id="1_uib8l"]
+[ext_resource type="PackedScene" uid="uid://dtvya4ynoc2xh" path="res://Interactables/GoldenRing/Bible.tscn" id="3_5cscy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fgsci"]
+albedo_color = Color(0.219501, 0.219501, 0.219501, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_d4m66"]
+bottom_radius = 0.1
+
+[node name="Church" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.99093, 0)
+use_collision = true
+size = Vector3(10, 10, 20)
+material = ExtResource("1_uib8l")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.26734, 9.88354)
+polygon = PackedVector2Array(5.37973, -1.31359, -5.2435, -1.3366, 0.0538464, 5.11948)
+depth = 20.0
+material = ExtResource("1_uib8l")
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.64752, -9.00191)
+operation = 2
+polygon = PackedVector2Array(-2.67768, -3.30495, -0.572516, 1.9122, 0.61736, 1.9122, 2.85981, -3.30495)
+material = ExtResource("1_uib8l")
+
+[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00130463, -1.59704, 8.46779)
+operation = 2
+polygon = PackedVector2Array(-4.5585, -3.13606, -3.79234, 7.04931, -0.00663284, 11.5561, 3.95936, 6.73384, 4.54524, -3.2262)
+depth = 18.0
+material = SubResource("StandardMaterial3D_fgsci")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.959393, 0.282074, 0, -0.282074, 0.959393, 0.445422, -0.384125, -9.34838)
+use_collision = true
+size = Vector3(6.46912, 1, 1)
+material = ExtResource("1_uib8l")
+
+[node name="Benches" type="Node3D" parent="."]
+
+[node name="Bench" parent="Benches" instance=ExtResource("1_csog3")]
+transform = Transform3D(0.00481701, 0, -0.999988, 0, 1, 0, 0.999988, 0, 0.00481701, 1.11692, 0.151441, -6.64057)
+
+[node name="Bench2" parent="Benches" instance=ExtResource("1_csog3")]
+transform = Transform3D(0.00481701, 0, -0.999988, 0, 1, 0, 0.999988, 0, 0.00481701, 1.11692, 0.151441, -4.34306)
+
+[node name="Bench3" parent="Benches" instance=ExtResource("1_csog3")]
+transform = Transform3D(0.00481701, 0, -0.999988, 0, 1, 0, 0.999988, 0, 0.00481701, 1.11692, 0.151441, -1.96806)
+
+[node name="Bench4" parent="Benches" instance=ExtResource("1_csog3")]
+transform = Transform3D(0.00481701, 0, -0.999988, 0, 1, 0, 0.999988, 0, 0.00481701, 1.11692, 0.151441, 0.190526)
+
+[node name="Bench5" parent="Benches" instance=ExtResource("1_csog3")]
+transform = Transform3D(0.00481701, 0, -0.999988, 0, 1, 0, 0.999988, 0, 0.00481701, 1.11692, 0.151441, 2.4116)
+
+[node name="Bench6" parent="Benches" instance=ExtResource("1_csog3")]
+transform = Transform3D(0.00481701, 0, -0.999988, 0, 1, 0, 0.999988, 0, 0.00481701, 1.11692, 0.151441, 4.68982)
+
+[node name="Bench7" parent="Benches" instance=ExtResource("1_csog3")]
+transform = Transform3D(0.00481701, 0, -0.999988, 0, 1, 0, 0.999988, 0, 0.00481701, -3.49812, 0.151441, -6.64057)
+
+[node name="Bench8" parent="Benches" instance=ExtResource("1_csog3")]
+transform = Transform3D(0.00481701, 0, -0.999988, 0, 1, 0, 0.999988, 0, 0.00481701, -3.49812, 0.151441, -4.34306)
+
+[node name="Bench9" parent="Benches" instance=ExtResource("1_csog3")]
+transform = Transform3D(0.00481701, 0, -0.999988, 0, 1, 0, 0.999988, 0, 0.00481701, -3.49812, 0.151441, -1.96806)
+
+[node name="Bench10" parent="Benches" instance=ExtResource("1_csog3")]
+transform = Transform3D(0.00481701, 0, -0.999988, 0, 1, 0, 0.999988, 0, 0.00481701, -3.49812, 0.151441, 0.190526)
+
+[node name="Bench11" parent="Benches" instance=ExtResource("1_csog3")]
+transform = Transform3D(0.00481701, 0, -0.999988, 0, 1, 0, 0.999988, 0, 0.00481701, -3.49812, 0.151441, 2.4116)
+
+[node name="Bench12" parent="Benches" instance=ExtResource("1_csog3")]
+transform = Transform3D(0.00481701, 0, -0.999988, 0, 1, 0, 0.999988, 0, 0.00481701, -3.49812, 0.151441, 4.68982)
+
+[node name="Torches" type="Node3D" parent="."]
+transform = Transform3D(0.966859, 0.255311, 0, -0.255311, 0.966859, 0, 0, 0, 1, -4.1508, 3.09945, 5.16996)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Torches"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.2565)
+mesh = SubResource("CylinderMesh_d4m66")
+skeleton = NodePath("../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Torches/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0258555, 1.15586, 0)
+light_color = Color(1, 0.462745, 0.0901961, 1)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Torches"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.05384)
+mesh = SubResource("CylinderMesh_d4m66")
+skeleton = NodePath("../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Torches/MeshInstance3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0258555, 1.15586, 0)
+light_color = Color(1, 0.462745, 0.0901961, 1)
+light_energy = 15.0
+light_specular = 0.0
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Torches"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.685)
+mesh = SubResource("CylinderMesh_d4m66")
+skeleton = NodePath("../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Torches/MeshInstance3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0258555, 1.15586, 0)
+light_color = Color(1, 0.462745, 0.0901961, 1)
+light_energy = 15.0
+light_specular = 0.0
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Torches"]
+mesh = SubResource("CylinderMesh_d4m66")
+skeleton = NodePath("../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Torches/MeshInstance3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0258555, 1.15586, 0)
+light_color = Color(1, 0.462745, 0.0901961, 1)
+light_energy = 15.0
+light_specular = 0.0
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Torches"]
+transform = Transform3D(-0.86963, -0.493698, 0.00241302, -0.493698, 0.869633, 0.000637195, -0.00241296, -0.000637167, -0.999997, 7.94635, 2.09833, -0.741167)
+mesh = SubResource("CylinderMesh_d4m66")
+skeleton = NodePath("../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Torches/MeshInstance3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0258555, 1.15586, 0)
+light_color = Color(1, 0.462745, 0.0901961, 1)
+light_energy = 15.0
+light_specular = 0.0
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Torches"]
+transform = Transform3D(-0.86963, -0.493698, 0.00241302, -0.493698, 0.869633, 0.000637195, -0.00241296, -0.000637167, -0.999997, 7.95408, 2.10037, -3.94386)
+mesh = SubResource("CylinderMesh_d4m66")
+skeleton = NodePath("../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Torches/MeshInstance3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0258555, 1.15586, 0)
+light_color = Color(1, 0.462745, 0.0901961, 1)
+light_energy = 15.0
+light_specular = 0.0
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Torches"]
+transform = Transform3D(-0.86963, -0.493698, 0.00241302, -0.493698, 0.869633, 0.000637195, -0.00241296, -0.000637167, -0.999997, 7.96462, 2.10315, -8.31269)
+mesh = SubResource("CylinderMesh_d4m66")
+skeleton = NodePath("../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Torches/MeshInstance3D7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0258555, 1.15586, 0)
+light_color = Color(1, 0.462745, 0.0901961, 1)
+light_energy = 15.0
+light_specular = 0.0
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Torches"]
+transform = Transform3D(-0.86963, -0.493698, 0.00241302, -0.493698, 0.869633, 0.000637195, -0.00241296, -0.000637167, -0.999997, 7.97593, 2.10614, -12.9977)
+mesh = SubResource("CylinderMesh_d4m66")
+skeleton = NodePath("../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Torches/MeshInstance3D8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0258555, 1.15586, 0)
+light_color = Color(1, 0.462745, 0.0901961, 1)
+
+[node name="Podium" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00886083, 1.19408, 6.57697)
+use_collision = true
+radius = 0.514
+material = ExtResource("1_uib8l")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Podium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.797792, 0.0341091)
+operation = 2
+height = 0.474
+
+[node name="Stage" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000956774, 0.162957, 7.42107)
+use_collision = true
+size = Vector3(9.05, 1, 2.17)
+material = ExtResource("1_uib8l")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0647007, 1.23582, 0.104285)
+light_size = 1.0
+
+[node name="Bible" parent="." instance=ExtResource("3_5cscy")]
+transform = Transform3D(-0.49908, 0, -0.808679, 0, 0.950285, 0, 0.808679, 0, -0.49908, 0.0578633, 1.7981, 6.60705)

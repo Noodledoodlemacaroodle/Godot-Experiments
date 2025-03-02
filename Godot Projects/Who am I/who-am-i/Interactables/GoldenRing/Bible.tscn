@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://dtvya4ynoc2xh"]
+
+[ext_resource type="Script" path="res://Interactables/GoldenRing/bible.gd" id="1_v25a0"]
+[ext_resource type="Material" uid="uid://drwj84m2mlqci" path="res://prototypeMats/Gold.tres" id="2_rw068"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ex308"]
+albedo_color = Color(0.0177324, 0.0177324, 0.0177324, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3lrrj"]
+material = SubResource("StandardMaterial3D_ex308")
+size = Vector3(0.44, 0.1, 0.395)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r4nux"]
+material = ExtResource("2_rw068")
+size = Vector3(0.2, 0.1, 0.01)
+
+[sub_resource type="BoxMesh" id="BoxMesh_070r2"]
+material = ExtResource("2_rw068")
+size = Vector3(0.115, 0.1, 0.01)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3qkhy"]
+size = Vector3(0.495276, 0.1, 0.451135)
+
+[node name="Bible" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0391278, 0)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_v25a0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0104355, 0)
+mesh = SubResource("BoxMesh_3lrrj")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0294988, 0.0152833, 0)
+mesh = SubResource("BoxMesh_r4nux")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.00520103, 0, 0.999986, 0, 1, 0, -0.999986, 0, 0.00520103, -0.0629413, 0.0152833, 0)
+mesh = SubResource("BoxMesh_070r2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013385, 0.0222168, -0.000323497)
+shape = SubResource("BoxShape3D_3qkhy")
+
+[node name="List of Lines" type="Node" parent="."]
+
+[node name="1st Line" type="Label" parent="List of Lines"]
+visible = false
+offset_right = 325.0
+offset_bottom = 23.0
+text = "[center]This book.."
+
+[node name="2nd Line" type="Label" parent="List of Lines/1st Line"]
+visible = false
+layout_mode = 0
+offset_right = 251.0
+offset_bottom = 23.0
+text = "[center]It proclaims knowledge of this world"
+metadata/_edit_use_anchors_ = true
+
+[node name="3rd Line" type="Label" parent="List of Lines/1st Line/2nd Line"]
+visible = false
+layout_mode = 0
+offset_right = 281.0
+offset_bottom = 23.0
+text = "[center]Is it cursed?"

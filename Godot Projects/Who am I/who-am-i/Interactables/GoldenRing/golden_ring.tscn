@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnu2i6k2fjbql"]
+
+[ext_resource type="Script" path="res://Interactables/GoldenRing/golden_ring.gd" id="1_2fypr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u77oh"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(1, 1, 0, 1)
+roughness = 0.0
+emission_enabled = true
+emission = Color(0.654963, 0.617805, 3.85046e-07, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_cl77f"]
+material = SubResource("StandardMaterial3D_u77oh")
+inner_radius = 0.03
+outer_radius = 0.05
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3qkhy"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="Golden Ring" type="StaticBody3D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_2fypr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0104355, 0)
+mesh = SubResource("TorusMesh_cl77f")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0012207, 0.0222168, -0.0045166)
+shape = SubResource("BoxShape3D_3qkhy")
+
+[node name="List of Lines" type="Node" parent="."]
+
+[node name="1st Line" type="Label" parent="List of Lines"]
+visible = false
+offset_right = 325.0
+offset_bottom = 23.0
+text = "[center]I ring of solid gold.. It almost beckons me.."
+
+[node name="2nd Line" type="Label" parent="List of Lines/1st Line"]
+visible = false
+layout_mode = 0
+offset_right = 251.0
+offset_bottom = 23.0
+text = "[center]Would anyone miss it if I took it?"
+metadata/_edit_use_anchors_ = true
+
+[node name="3rd Line" type="Label" parent="List of Lines/1st Line/2nd Line"]
+visible = false
+layout_mode = 0
+offset_right = 281.0
+offset_bottom = 23.0
+text = "[center]No one of importance will miss this.."
