@@ -25,8 +25,8 @@ func _on_body_entered(body: Node) -> void:
 		frying_pan = body
 		heat = frying_pan.heat
 		apply_impulse((collision_normal * heat) * get_process_delta_time(), collision_point)
-		print(heat)
-	
+		#print(heat)
+		
 	
 	
 

@@ -33,7 +33,10 @@ func _process(delta: float) -> void:
 func _on_area_entered(area: Area3D) -> void:
 	if area.is_in_group("Frying Pan"):
 		Pan = area
+	if area.is_in_group("Food"):
+		area.apply_central_impulse(Vector3.UP)
 		#Pan.is_in_fire = true
+		print("pop")
 	
 
 

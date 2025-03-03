@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwgnwy2ho6ife"]
+[gd_scene load_steps=10 format=3 uid="uid://dwgnwy2ho6ife"]
 
 [ext_resource type="Material" uid="uid://dmapk3qifc4hl" path="res://prototypeMats/Black.tres" id="1_a1a7f"]
 [ext_resource type="PackedScene" uid="uid://bjiomguvdmmq3" path="res://Player/player.tscn" id="1_vsal0"]
 [ext_resource type="PackedScene" uid="uid://bnu2i6k2fjbql" path="res://Interactables/GoldenRing/golden_ring.tscn" id="2_gxft7"]
 [ext_resource type="PackedScene" uid="uid://dhptx8gwh7rdp" path="res://Level/Buildings/church.tscn" id="4_5gwwc"]
+[ext_resource type="PackedScene" uid="uid://cawdyoj5h8uh6" path="res://Level/cooking_scene.tscn" id="5_7bgw7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5jqgl"]
 sky_top_color = Color(0.460163, 0.447385, 0.42556, 1)
@@ -72,3 +73,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.79754, 1.39736, -1.76195)
 
 [node name="Church" parent="." instance=ExtResource("4_5gwwc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.57364, 0.0436878, 25.1818)
+
+[node name="cooking scene" parent="." instance=ExtResource("5_7bgw7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49273, 0.0499983, -5.75678)

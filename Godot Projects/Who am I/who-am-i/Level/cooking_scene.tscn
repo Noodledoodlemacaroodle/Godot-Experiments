@@ -1,10 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://cawdyoj5h8uh6"]
+[gd_scene load_steps=28 format=3 uid="uid://cawdyoj5h8uh6"]
 
 [ext_resource type="Material" uid="uid://0l5kfkrpp1q7" path="res://prototypeMats/pan.tres" id="1_eo84s"]
 [ext_resource type="Script" path="res://Level/frying_pan.gd" id="1_jsowj"]
 [ext_resource type="Script" path="res://Level/static_body_3d.gd" id="3_hdtvq"]
 [ext_resource type="Script" path="res://Level/sausage.gd" id="3_vmp8b"]
 [ext_resource type="Script" path="res://Level/bonfire.gd" id="4_jsewh"]
+[ext_resource type="Script" path="res://Level/cooking_trigger.gd" id="6_u7vbp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xkfyu"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -102,6 +103,9 @@ top_radius = 0.01
 bottom_radius = 0.7
 height = 0.5
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_fmor4"]
+size = Vector3(2, 2, 2)
+
 [node name="cooking scene" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -118,9 +122,15 @@ transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_dt0qo")
 draw_pass_1 = SubResource("QuadMesh_8278k")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="GPUParticles3D"]
+light_color = Color(1, 0.54902, 0.364706, 1)
+light_energy = 1.71
+omni_range = 1.647
+
 [node name="Frying Pan" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.604897, 2.156)
 script = ExtResource("1_jsowj")
+pan_material = ExtResource("1_eo84s")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Frying Pan"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
@@ -139,6 +149,10 @@ mesh = SubResource("TorusMesh_l21p7")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Frying Pan/MeshInstance3D2/MeshInstance3D/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.356572, 0)
 shape = SubResource("CylinderShape3D_sd4pb")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Frying Pan/MeshInstance3D2/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00193262, 0.375727, -0.0514159)
+omni_range = 1.124
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Frying Pan/MeshInstance3D2" groups=["Frying Pan"]]
 disable_mode = 2
@@ -183,6 +197,14 @@ shape = SubResource("CylinderShape3D_rlqme")
 mesh = SubResource("CylinderMesh_0lys8")
 skeleton = NodePath("../..")
 
+[node name="Cooking Trigger" type="Area3D" parent="." groups=["Cooking Scene"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98812, 2.02318)
+script = ExtResource("6_u7vbp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cooking Trigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.45582)
+shape = SubResource("BoxShape3D_fmor4")
+
 [connection signal="area_entered" from="Frying Pan/MeshInstance3D2/MeshInstance3D/Area3D" to="Frying Pan" method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="Frying Pan/MeshInstance3D2/MeshInstance3D/Area3D" to="Frying Pan" method="_on_area_3d_area_exited"]
 [connection signal="body_entered" from="Sausage" to="Sausage" method="_on_body_entered"]
@@ -191,3 +213,4 @@ skeleton = NodePath("../..")
 [connection signal="area_exited" from="Bonfire" to="Bonfire" method="_on_area_exited"]
 [connection signal="body_entered" from="Bonfire" to="Bonfire" method="_on_body_entered"]
 [connection signal="body_exited" from="Bonfire" to="Bonfire" method="_on_body_exited"]
+[connection signal="body_entered" from="Cooking Trigger" to="Cooking Trigger" method="_on_body_entered"]
